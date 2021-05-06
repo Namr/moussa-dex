@@ -1,17 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<navbar />
+  <img alt="Vue logo" src="./assets/lebanon_ball.jpg" width="80" height="80"/>
+  <manga-list />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from "axios";
+import MangaList from "./components/MangaList";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { MangaList },
+};
 </script>
 
 <style>
