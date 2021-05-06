@@ -7,8 +7,12 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
     "axios": "^0.21.1",
+    "bootstrap": "^5.0.0",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "sass-loader": "^11.0.1",
     "vue": "^3.0.0",
     "vue-resource": "^1.5.2"
   },

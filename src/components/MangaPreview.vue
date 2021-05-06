@@ -20,10 +20,8 @@ export default {
 </script>
 
 <style scoped>
-.container {
-    display: table-cell;
-  box-sizing: border-box;
-  width: 30%;
-  border: 1px solid black;
-}
+  .container {
+    box-sizing: border-box;
+    border: 0.05em solid black;
+  }
 </style>
