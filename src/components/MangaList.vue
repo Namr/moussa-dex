@@ -1,5 +1,4 @@
 <template>
-  <header>
     <div class="row">
       <div class="col">
       <h1>Enter a Manga title:</h1>
@@ -14,7 +13,7 @@
     </div>
     <br>
     <template :key="zip[0].data.id" v-for="zip in mangas">
-      <div class="row">
+      <div class="row padder">
         <div class="col">
           <manga-preview :manga="zip[0]" />
         </div>
@@ -24,7 +23,6 @@
       </div>
       <br>
     </template>
-  </header>
 </template>
 
 <script>
@@ -88,3 +86,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.padder {
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+</style>

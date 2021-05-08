@@ -1,16 +1,14 @@
 <template>
   <div class="row sidebar">
-    <div class="col-md-4"> </div>
-    <div class="col">
+    <div class="col rightbtn">
       <button @click="updatePage(-1)">Previous Page</button>
     </div>
     <div class="col">
-      <chapterSelector @chapter-selected="updateChapter" :manga="manga" />
+      <chapterSelector @chapterSelected="updateChapter" :manga="manga" />
     </div>
-    <div class="col">
+    <div class="col leftbtn">
       <button @click="updatePage(1)">Next Page</button>
     </div>
-    <div class="col-md-4"> </div>
   </div>
   <div class="row">
     <div class="col">
@@ -45,6 +43,7 @@ export default {
   methods: {
     updateChapter(value) {
       this.schapter = value;
+      this.page = 0;
     },
     updatePage(value) {
       var temp = this.page;
@@ -59,7 +58,16 @@ export default {
 
 <style scoped>
 .sidebar {
-  margin-right: 1em;
   background-color: darkgrey;
+}
+
+.rightbtn {
+  float: left;
+  margin-top: 5px;
+}
+
+.leftbtn {
+  float: right;
+  margin-top: 5px;
 }
 </style>
