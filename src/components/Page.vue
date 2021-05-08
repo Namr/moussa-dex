@@ -1,4 +1,5 @@
 <template>
+  <h1 v-if="iurl == '' ">Loading</h1>
   <img :src="iurl" style="max-width: 80%; height: auto" />
 </template>
 

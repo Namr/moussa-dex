@@ -2,8 +2,11 @@
   <br />
   <h2>Chapter:</h2>
   <select name="Select Chapter" id="selchapter">
+    <option :selected="true">Choose Chapter</option>
     <template v-for="chapter in chapters" :key="chapter.data.id">
-      <option @click='$emit("chapter-selected", chapter)'>{{ chapter.data.attributes.title }}</option>
+      <option @click="$emit('chapter-selected', chapter)">
+        {{ chapter.data.attributes.title }}
+      </option>
     </template>
   </select>
 </template>
@@ -24,19 +27,25 @@ export default {
     manga: Object,
   },
   created() {},
+  methods: {
+    AppendList(offsett) {
+      axios.get("https://api.mangadex.org/chapter", {params: {limit: 100, offset: offsett, translatedLanguage: "en", manga: this.manga.data.id}}).then((response) => {
+        this.chapters = this.chapters.concat(response.data.results);
+
+        if(response.data.results.length > 99) {
+          this.AppendList(offsett + 100);
+        } else {
+          this.chapters.sort((a,b) => (Number(a.data.attributes.chapter) > Number(b.data.attributes.chapter)) ? 1 : -1)
+          this.$emit('chapter-selected', this.chapters[0]);
+          return;
+        }
+      });
+    }
+  },
   watch: {
     manga: function (newVal, oldVal) {
-      var tempchapters = newVal.relationships.filter(
-        (relation) => relation.type === "chapter"
-      );
-
-      for (var chapter in tempchapters) {
-        axios
-          .get("https://api.mangadex.org/chapter/" + tempchapters[chapter].id)
-          .then((response) => {
-            this.chapters.push(response.data);
-          });
-      }
+      this.chapters = [];
+      this.AppendList(0);
     },
   },
 };
