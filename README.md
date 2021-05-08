@@ -1,24 +1,13 @@
-# moussa-dex
+# Moussadex ![Lebanonball](./src/assets/lebanon_ball.jpg){:height=10% width=10%}
 
-## Project setup
-```
-npm install
-```
+## Live Website
+http://moussadex.com/
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+until the API is updated you need to bypass CORS on your browser which can be done with [this](https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/) on firefox and [this](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) on chrome.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## About
+This is a mangadex frontend, created because mangadex has been down for a few months but the API is back up. This project was inteded for learning web development and Vue3.
 
-### Lints and fixes files
-```
-npm run lint
-```
+I AM NOT RESPOSIBLE FOR ANY OF THE CONTENT THAT MANGADEX HOSTS, THIS IS SIMPLY A FRONT END SERVICE.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+THERE IS UNFORTUNATELY NSFW CONTENT AND THE API DOES NOT ALLOW FOR IT TO BE FILTERED OUT.
