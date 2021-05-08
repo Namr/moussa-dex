@@ -20,8 +20,8 @@ export default {
 </script>
 
 <style scoped>
-  .container {
-    box-sizing: border-box;
-    border: 0.05em solid black;
-  }
+.container {
+  box-sizing: border-box;
+  border: 0.05em solid black;
+}
 </style>

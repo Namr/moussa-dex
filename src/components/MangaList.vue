@@ -15,7 +15,9 @@
     <br>
     <template :key="zip[0].data.id" v-for="zip in mangas">
       <div class="row">
-        <div class="col"><manga-preview :manga="zip[0]" /></div>
+        <div class="col">
+          <manga-preview :manga="zip[0]" />
+        </div>
         <div v-if="zip[1] != undefined" class="col">
           <manga-preview :manga="zip[1]" />
         </div>

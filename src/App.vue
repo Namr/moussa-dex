@@ -1,16 +1,16 @@
 <template>
   <navbar />
-  <manga-list />
+  <router-view />
 </template>
 
 <script>
 import axios from "axios";
-import MangaList from "./components/MangaList";
-import Navbar from "./components/Navbar"
+
+import Navbar from "./components/Navbar";
 
 export default {
   name: "App",
-  components: { MangaList, Navbar },
+  components: { Navbar },
 };
 </script>
 
