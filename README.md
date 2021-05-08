@@ -1,4 +1,4 @@
-# Moussadex ![Lebanonball](./src/assets/lebanon_ball.jpg){:height=10% width=10%}
+# <img src="./src/assets/lebanon_ball.jpg" width="80" height="80"> Moussadex 
 
 ## Live Website
 http://moussadex.com/
