@@ -1,10 +1,20 @@
 <template>
+  <div class="row sidebar">
+    <div class="col-md-4"> </div>
+    <div class="col">
+      <button @click="updatePage(-1)">Previous Page</button>
+    </div>
+    <div class="col">
+      <chapterSelector @chapter-selected="updateChapter" :manga="manga" />
+    </div>
+    <div class="col">
+      <button @click="updatePage(1)">Next Page</button>
+    </div>
+    <div class="col-md-4"> </div>
+  </div>
   <div class="row">
     <div class="col">
-      <page :chapter="chapter" />
-    </div>
-    <div class="col-md-2 sidebar">
-      <chapterSelector :manga="manga" />
+      <page :chapter="schapter" :page="page" />
     </div>
   </div>
 </template>
@@ -21,7 +31,8 @@ export default {
   data() {
     return {
       manga: null,
-      chapter: null,
+      schapter: null,
+      page: 0,
     };
   },
   created() {
@@ -31,6 +42,18 @@ export default {
         this.manga = response.data;
       });
   },
+  methods: {
+    updateChapter(value) {
+      this.schapter = value;
+    },
+    updatePage(value) {
+      var temp = this.page;
+      temp += value;
+      if (temp >= 0 && temp < this.schapter.data.attributes.data.length) {
+        this.page = temp;
+      }
+    }
+  },
 };
 </script>
 
@@ -38,7 +61,5 @@ export default {
 .sidebar {
   margin-right: 1em;
   background-color: darkgrey;
-  min-height: 100vh;
-  height: 100%;
 }
 </style>
