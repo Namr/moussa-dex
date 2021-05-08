@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Main from '../views/Main'
+import Reader from '../views/Reader'
 
 const routes = [
     {
@@ -8,6 +9,11 @@ const routes = [
         name: 'Main',
         component: Main,
     },
+    {
+        path: '/reader/:id',
+        name: "Reader",
+        component: Reader
+    }
 ]
 
 const router = createRouter({

@@ -1,12 +1,11 @@
 <template>
-  <div class="container">
+  <div @click="$router.push({ name: 'Reader', params: { id: manga.data.id }})" class="container">
     <h2>{{ manga.data.attributes.title.en }}</h2>
     <p>{{ manga.data.attributes.description.en }}</p>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "MangaPreview",
   props: {
