@@ -4,7 +4,7 @@
       <button @click="updatePage(-1)">Previous Page</button>
     </div>
     <div class="col">
-      <chapterSelector @chapterSelected="updateChapter" :manga="manga" />
+      <chapterSelector @chapterSelected="updateChapter" :manga="manga" :page="page + 1 " :lastPage="lastPage"/>
     </div>
     <div class="col leftbtn">
       <button @click="updatePage(1)">Next Page</button>
@@ -31,6 +31,7 @@ export default {
       manga: null,
       schapter: null,
       page: 0,
+      lastPage: 0,
     };
   },
   created() {
@@ -44,6 +45,7 @@ export default {
     updateChapter(value) {
       this.schapter = value;
       this.page = 0;
+      this.lastPage = this.schapter.data.attributes.data.length;
     },
     updatePage(value) {
       var temp = this.page;

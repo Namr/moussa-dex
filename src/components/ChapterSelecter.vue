@@ -1,14 +1,15 @@
 <template>
   <br />
   <h2>Chapter:</h2>
-  <select name="Select Chapter" id="selchapter" @change="SelectChapter($event)">
-    <option :selected="true">Choose Chapter</option>
+  <select name="Select Chapter" id="selchapter" v-model="selected" @change="SelectChapter($event)">
+    <option :value="'Choose Chapter'" >Choose Chapter</option>
     <template v-for="chapter in chapters" :key="chapter.data.id">
       <option :value="chapter.data.id">
         {{ chapter.data.attributes.title }}
       </option>
     </template>
   </select>
+  <p>Page {{page}} / {{lastPage}}</p>
 </template>
 
 
@@ -21,10 +22,14 @@ export default {
   data() {
     return {
       chapters: [],
+      selected: 'Choose Chapter',
+      selectedIndex: 0,
     };
   },
   props: {
     manga: Object,
+    page: Number,
+    lastPage: Number,
   },
   created() {},
   methods: {
@@ -51,6 +56,7 @@ export default {
                 : -1
             );
             this.$emit("chapterSelected", this.chapters[0]);
+            this.selected = this.chapters[0].data.id;
             return;
           }
         });
@@ -59,6 +65,8 @@ export default {
       for (var c in this.chapters) {
         if (this.chapters[c].data.id == event.target.value) {
           this.$emit("chapterSelected", this.chapters[c]);
+          this.selected = this.chapters[c].data.id;
+          this.selectedIndex = c;
         }
       }
     },

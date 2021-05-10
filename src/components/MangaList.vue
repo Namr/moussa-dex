@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-      <div class="col">
+  <div class="row">
+    <div class="col">
       <h1>Enter a Manga title:</h1>
       <input
         type="text"
@@ -9,20 +9,20 @@
         id="title"
         name="title"
       />
+    </div>
+  </div>
+  <br />
+  <template :key="zip[0].data.id" v-for="zip in mangas">
+    <div class="row padder">
+      <div class="col">
+        <manga-preview :manga="zip[0]" />
+      </div>
+      <div v-if="zip[1] != undefined" class="col">
+        <manga-preview :manga="zip[1]" />
       </div>
     </div>
-    <br>
-    <template :key="zip[0].data.id" v-for="zip in mangas">
-      <div class="row padder">
-        <div class="col">
-          <manga-preview :manga="zip[0]" />
-        </div>
-        <div v-if="zip[1] != undefined" class="col">
-          <manga-preview :manga="zip[1]" />
-        </div>
-      </div>
-      <br>
-    </template>
+    <br />
+  </template>
 </template>
 
 <script>
@@ -45,15 +45,19 @@ export default {
     this.logindata.username = "Namr2000";
     this.logindata.password = "Mana2eesh!";
 
-    axios.get("https://api.mangadex.org/manga/").then((repsonse) => {
-      this.mangas = repsonse.data.results;
-      const half = Math.ceil(this.mangas.length / 2);
+    axios
+      .get("https://api.mangadex.org/manga/", {
+        params: { contentRating: ["safe"] },
+      })
+      .then((repsonse) => {
+        this.mangas = repsonse.data.results;
+        const half = Math.ceil(this.mangas.length / 2);
 
-      const firstHalf = this.mangas.splice(0, half);
-      const secondHalf = this.mangas.splice(-half);
+        const firstHalf = this.mangas.splice(0, half);
+        const secondHalf = this.mangas.splice(-half);
 
-      this.mangas = zip(firstHalf, secondHalf);
-    });
+        this.mangas = zip(firstHalf, secondHalf);
+      });
 
     /*
     axios.post("https://api.mangadex.org/auth/login", this.logindata).then(

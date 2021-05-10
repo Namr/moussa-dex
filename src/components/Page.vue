@@ -1,5 +1,5 @@
 <template>
-  <h1 v-if="iurl == '' ">Loading</h1>
+  <h1 v-if="iurl == ''">Loading</h1>
   <img :src="iurl" style="max-width: 80%; height: auto" />
 </template>
 
@@ -27,24 +27,39 @@ export default {
         .get("https://api.mangadex.org/at-home/server/" + newVal.data.id)
         .then((response) => {
           this.baseurl = response.data.baseUrl;
-          this.iurl =
-            this.baseurl +
-            "/data/" +
-            newVal.data.attributes.hash +
-            "/" +
-            newVal.data.attributes.data[this.page];
+          this.iurl = this.getChapterURL(this.page);
+
+          this.preloadPages(this.page);
         });
     },
     page: function (newVal, oldVal) {
       if (newVal >= 0 && newVal < this.chapter.data.attributes.data.length) {
-        this.iurl =
-          this.baseurl +
-          "/data/" +
-          this.chapter.data.attributes.hash +
-          "/" +
-          this.chapter.data.attributes.data[newVal];
+        this.iurl = this.getChapterURL(newVal);
       }
     },
+  },
+  methods: {
+    getChapterURL(page) {
+      var str =
+        this.baseurl +
+        "/data/" +
+        this.chapter.data.attributes.hash +
+        "/" +
+        this.chapter.data.attributes.data[page];
+
+      return str;
+    },
+    preloadPages(page) {
+      var img = new Image();
+
+      img.onload = () => {
+        if(page < this.chapter.data.attributes.data.length) {
+          this.preloadPages(page + 1);
+        }
+      }
+
+      img.src = this.getChapterURL(page);
+    }
   },
 };
 </script>
