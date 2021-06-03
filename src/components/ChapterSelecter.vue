@@ -44,7 +44,7 @@ export default {
           params: {
             limit: 100,
             offset: offsett,
-            translatedLanguage: "en",
+            translatedLanguage: ["en"],
             manga: this.manga.data.id,
           },
         })
